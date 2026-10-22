@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1F4E5F">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18531223990"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18531223990');
+    </script>
+
+    <!-- Event snippet for نقرة صادرة إلى الخارج conversion page -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18531223990/u0yJCK_c-6UdELaTsIRF',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
     <!-- Phone & WhatsApp handlers -->
     <script>
     function makePhoneCall(phoneNumber) {
@@ -17,6 +43,9 @@
         }
       }
       var telUrl = 'tel:' + cleanNumber;
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion(telUrl);
+      }
       setTimeout(function() {
         window.location.href = telUrl;
       }, 100);
@@ -24,6 +53,9 @@
     }
 
     function trackWhatsAppClick(url) {
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion(url);
+      }
       setTimeout(function() {
         window.open(url, '_blank');
       }, 100);
@@ -1048,6 +1080,9 @@
         // Contact form
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            if (typeof gtag_report_conversion === 'function') {
+                gtag_report_conversion();
+            }
             alert('شكراً لتواصلكم! سنقوم بالاتصال بكم لتأكيد الطلب وتحديد موعد الخدمة في أقرب وقت.');
             this.reset();
         });
@@ -1063,6 +1098,9 @@
                 }
             }
             var telUrl = 'tel:' + cleanNumber;
+            if (typeof gtag_report_conversion === 'function') {
+                gtag_report_conversion(telUrl);
+            }
             setTimeout(function() {
                 window.location.href = telUrl;
             }, 100);
@@ -1071,6 +1109,9 @@
         
         // WhatsApp
         function trackWhatsAppClick(url) {
+            if (typeof gtag_report_conversion === 'function') {
+                gtag_report_conversion(url);
+            }
             setTimeout(function() {
                 window.open(url, '_blank');
             }, 100);
